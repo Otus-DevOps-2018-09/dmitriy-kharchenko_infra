@@ -65,7 +65,7 @@ testapp_port = 9292
 # Создание базового образа с помощью packer
 
 В файле ubuntu16.json описана конфигурация для создания образа с зависимостями приложения reddit.
-После создания виртуальной машины приложение надо установить отдельно c помощью скрипта scripts/deploy.sh
+После создания виртуальной машины приложение надо установить отдельно c помощью скрипта `scripts/deploy.sh`
 
 ```
 packer build -var-file variables.json ubuntu16.json
@@ -76,6 +76,5 @@ packer build -var-file variables.json ubuntu16.json
 В файле immutable.json описана конфигурация для создания образа приложения reddit.
 После создания виртуальной машины приложение уже запущено и работает.
 ```
-cd packer
 packer build -var-file variables.json immutable.json
 ```
