@@ -43,3 +43,39 @@ gcloud compute --project=infra-219305 firewall-rules create default-puma-server 
 
 testapp_IP = 35.241.207.235
 testapp_port = 9292
+
+# Конфигурация Packer
+
+Все файлы конфигурации packer хранятся в каталоге packer.
+
+Скрипт `config-scripts/create-reddit-vm.sh` создает инстанс с запущенным приложением.
+
+```
+├── files
+│   └── puma.service # юнит для запуска сервера puma
+├── immutable.json # bake конфигурация
+├── scripts
+│   ├── deploy.sh # скрипт для установки приложения
+│   ├── install_mongodb.sh # скрипт для установки MongoDB
+│   └── install_ruby.sh # скрипт для установки Ruby
+├── ubuntu16.json # base конфигурация
+└── variables.json.example # обязательные переменные для файлов конфигураций packer
+```
+
+# Создание базового образа с помощью packer
+
+В файле ubuntu16.json описана конфигурация для создания образа с зависимостями приложения reddit.
+После создания виртуальной машины приложение надо установить отдельно c помощью скрипта scripts/deploy.sh
+
+```
+packer build -var-file variables.json ubuntu16.json
+```
+
+# Создания application образа с помощью packer
+
+В файле immutable.json описана конфигурация для создания образа приложения reddit.
+После создания виртуальной машины приложение уже запущено и работает.
+```
+cd packer
+packer build -var-file variables.json immutable.json
+```
