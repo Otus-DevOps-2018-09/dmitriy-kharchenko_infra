@@ -83,7 +83,9 @@ packer build -var-file variables.json immutable.json
 
 После опсиания в конфигурации ключа пользователя appuser2 и выполнения команды `terraform apply`, ключ заменен на ключ пользователя appuser1.
 
-После добавления ключа appuser_web через web-интерфейс и выполнения команды `terraform apply` в метаданные проекта добавился ключ appuser1
+После добавления ключа appuser_web через web-интерфейс и выполнения команды `terraform apply` в метаданные проекта добавился ключ appuser1.
+
+Итог - ключи затирают друг друга, ключ в metadata должен быть один.
 
 # Load Balancer
 

@@ -10,7 +10,6 @@ resource "google_compute_instance_group" "reddit_servers" {
   }
 
   zone = "${var.zone}"
-
 }
 
 resource "google_compute_health_check" "reddit_health" {
@@ -24,11 +23,11 @@ resource "google_compute_health_check" "reddit_health" {
 }
 
 resource "google_compute_backend_service" "reddit_backend" {
-  name             = "reddit-backend"
-  description      = "Reddit Backend"
-  protocol         = "HTTP"
-   port_name   = "http"
-  timeout_sec      = 10
+  name        = "reddit-backend"
+  description = "Reddit Backend"
+  protocol    = "HTTP"
+  port_name   = "http"
+  timeout_sec = 10
 
   backend {
     group = "${google_compute_instance_group.reddit_servers.self_link}"
@@ -38,13 +37,13 @@ resource "google_compute_backend_service" "reddit_backend" {
 }
 
 resource "google_compute_url_map" "reddit_url_map" {
-    name = "reddit-url-map"
-    default_service = "${google_compute_backend_service.reddit_backend.self_link}"
+  name            = "reddit-url-map"
+  default_service = "${google_compute_backend_service.reddit_backend.self_link}"
 }
 
 resource "google_compute_target_http_proxy" "reddit_proxy" {
-  name        = "reddit-proxy"
-  url_map     = "${google_compute_url_map.reddit_url_map.self_link}"
+  name    = "reddit-proxy"
+  url_map = "${google_compute_url_map.reddit_url_map.self_link}"
 }
 
 resource "google_compute_global_forwarding_rule" "reddit_rule" {

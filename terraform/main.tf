@@ -6,19 +6,19 @@ provider "google" {
 
 resource "google_compute_project_metadata_item" "appuser1" {
   key   = "ssh-keys"
-  value = "appuser1:${file("~/.ssh/appuser1.pub")}"
+  value = "appuser1:${file(var.public_key_path)}"
 }
 
 resource "google_compute_project_metadata_item" "appuser2" {
   key   = "ssh-keys"
-  value = "appuser2:${file("~/.ssh/appuser2.pub")}"
+  value = "appuser2:${file(var.public_key_path)}"
 }
 
 resource "google_compute_instance" "app" {
   name         = "reddit-app-${count.index}"
   machine_type = "g1-small"
   zone         = "${var.zone}"
-  count = 2
+  count        = 2
 
   # определение загрузочного диска
   boot_disk {
