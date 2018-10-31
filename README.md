@@ -104,3 +104,18 @@ Provisioners используются в модулях db и app.
 
 В модуле app используется шаблон для настройки перменной окружения `DATABASE_URL` в unit `puma.service`.
 В модуле db rovisioner копирует конфигурацию MongoDB.
+
+# Ansible
+
+Команда `ansible app -m command -a 'rm -rf ~/reddit'` удалила каталог с приложением, поэтому плейбук `clone.yml` заново склонировал репозиторий и вернул `changed=1`.
+
+# Ansible статический JSON Inventory
+
+Скрипт `inventory.sh` возвращает содержимое  файла `inventory.json`.
+Для проверки соеденения с inventory нужно запустить команду `ansible all -m ping -i inventory.sh`.
+
+# Ansible динамический JSON Inventory
+
+В каталоге `ansible` скрипт `gce_inventory.sh` возвращает JSON Inventory основыаясь на файле состояния Terraform.
+Для работы скрипта необходимо установить утилиту [terraform-inventory](https://github.com/adammck/terraform-inventory)
+В директории `ansible` запустить команду `ansible-playbook clone.yml -i gce_inventory.sh`
