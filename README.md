@@ -117,5 +117,7 @@ Provisioners используются в модулях db и app.
 # Ansible динамический JSON Inventory
 
 В каталоге `ansible` скрипт `gce_inventory.sh` возвращает JSON Inventory основыаясь на файле состояния Terraform.
+
 Для работы скрипта необходимо установить утилиту [terraform-inventory](https://github.com/adammck/terraform-inventory)
+
 В директории `ansible` запустить команду `ansible-playbook clone.yml -i gce_inventory.sh`
