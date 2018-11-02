@@ -121,3 +121,13 @@ Provisioners используются в модулях db и app.
 Для работы скрипта необходимо установить утилиту [terraform-inventory](https://github.com/adammck/terraform-inventory)
 
 В директории `ansible` запустить команду `ansible-playbook clone.yml -i gce_inventory.sh`
+
+# Ansible 2
+
+Добавлены плейбуки для настройки MongoDB, Puma и деплоя приложения.
+
+Добавлены плейбуки для провижининга packer образов.
+
+В `ansible.cfg` в качестве `inventory` используется скрипт `gce_inventory.sh`. Он получает inventory из состояния terraform. Такой подход избавляет от vendor lock облачного провайдера.
+
+Для работы скрипта необходимо установить утилиту [terraform-inventory](https://github.com/adammck/terraform-inventory)

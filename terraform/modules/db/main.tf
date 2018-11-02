@@ -20,20 +20,20 @@ resource "google_compute_instance" "db" {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
 
-  connection {
-    type        = "ssh"
-    user        = "appuser"
-    agent       = false
-    private_key = "${file(var.private_key_path)}"
-  }
+  # connection {
+  #   type        = "ssh"
+  #   user        = "appuser"
+  #   agent       = false
+  #   private_key = "${file(var.private_key_path)}"
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo '${file("${path.module}/files/mongod.conf")}' > /tmp/mongod.conf",
-      "sudo mv /tmp/mongod.conf /etc/mongod.conf",
-      "sudo service mongod restart",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "echo '${file("${path.module}/files/mongod.conf")}' > /tmp/mongod.conf",
+  #     "sudo mv /tmp/mongod.conf /etc/mongod.conf",
+  #     "sudo service mongod restart",
+  #   ]
+  # }
 }
 
 resource "google_compute_firewall" "firewall_puma" {
