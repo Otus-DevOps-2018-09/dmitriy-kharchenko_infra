@@ -52,7 +52,7 @@ script:
   - tflint
 
   - cd $ROOT_PROJECT/ansible
-  - ansible-lint playbooks/*.yml
+  - ansible-lint --exclude=roles/jdauphant.nginx playbooks/*.yml
 notifications:
   slack:
     rooms:
