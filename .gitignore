@@ -6,7 +6,7 @@ packer/variables.json
 .terraform/
 *.retry
 jdauphant.nginx
-mongo-role
+db
 vault.key
 # Vagrant & molecule
 .vagrant/

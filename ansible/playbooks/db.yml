@@ -4,4 +4,4 @@
   become: true
 
   roles:
-    - mongo-role
+    - db

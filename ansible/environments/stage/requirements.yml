@@ -3,4 +3,4 @@
   
 - src: https://github.com/dmitriy-kharchenko/mongo-role
   version: master
-  name: mongo-role
+  name: db
