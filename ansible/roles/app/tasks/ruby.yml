@@ -1,0 +1,11 @@
+---
+- name: Install Ruby
+  tags: ruby
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+      - ruby-full
+      - ruby-bundler
+      - build-essential

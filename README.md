@@ -142,3 +142,10 @@ Provisioners используются в модулях db и app.
  - Добавлено правило фаервола для доступа к nginx
  - Обновлены пути к плейбукам в конфигурациях Packer
  - Добавлены проверки конфигураций Packer, Terraform, Ansible в TravisCI
+
+# Ansible 4
+
+- Добавален Vagrantfile с провижингом Ansible для деплоя инфраструктуры локально
+- Плейбуки для packer используют Ansible роли для провижинга образов
+- Ansible роль для деплоя MongoDB вынесена в отдельный репозиторий [mongo-role](https://github.com/dmitriy-kharchenko/mongo-role)
+- Travis проводит тесты роли `mongo-role` и шлет уведомление в Slack
