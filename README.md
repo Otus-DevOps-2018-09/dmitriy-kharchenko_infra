@@ -90,3 +90,17 @@ packer build -var-file variables.json immutable.json
 # Load Balancer
 
 Недостатком данной конфигурации является отсуствие общей базы данных у backend серверов, а также наличие у них внешних адресов.
+
+# Terraform backend Bucket
+
+При попытке одновременного применения конфигурации возникает ошибка блокировки состояния
+
+> Error locking state: Error acquiring the state lock: writing "gs://storage-bucket-stage/stage-state/default.tflock"
+> failed: googleapi: Error 412: Precondition Failed, conditionNotMet
+
+# Terraform Provisioners
+
+Provisioners используются в модулях db и app.
+
+В модуле app используется шаблон для настройки перменной окружения `DATABASE_URL` в unit `puma.service`.
+В модуле db rovisioner копирует конфигурацию MongoDB.
