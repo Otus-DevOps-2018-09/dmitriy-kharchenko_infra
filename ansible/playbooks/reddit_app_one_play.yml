@@ -2,8 +2,8 @@
 - name: Configure hosts & deploy application
   hosts: all
   vars:
-    mongo_bind_ip: 0.0.0.0 
-    db_host: 10.132.0.2 
+    mongo_bind_ip: 0.0.0.0
+    db_host: 10.132.0.2
   tasks:
     - name: Change mongo config file
       become: true
@@ -12,7 +12,7 @@
         dest: /etc/mongod.conf
         mode: 0644
       tags: db-tag
-      notify: restart mongod 
+      notify: restart mongod
     - name: Add unit file for Puma
       become: true
       copy:
@@ -41,11 +41,11 @@
         state: present
         chdir: /home/appuser/reddit
       tags: deploy-tag
-      
+
   handlers:
     - name: restart mongod
       become: true
       service: name=mongod state=restarted
     - name: reload puma
       become: true
-      systemd: name=puma state=restarted 
+      systemd: name=puma state=restarted

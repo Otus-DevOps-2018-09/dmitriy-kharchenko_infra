@@ -1,6 +1,8 @@
 # dmitriy-kharchenko_infra
 dmitriy-kharchenko Infra repository
 
+[![Build Status](https://travis-ci.com/Otus-DevOps-2018-09/dmitriy-kharchenko_infra.svg?branch=ansible-3)](https://travis-ci.com/Otus-DevOps-2018-09/dmitriy-kharchenko_infra)
+
 # Подключение к someinternalhost в одну команду
 
 Для подключения к someinternalhost в одну команду `ssh someinternalhost` необходимо добавить следющую конфигурацию в `~/.ssh/config`
@@ -131,3 +133,12 @@ Provisioners используются в модулях db и app.
 В `ansible.cfg` в качестве `inventory` используется скрипт `gce_inventory.sh`. Он получает inventory из состояния terraform. Такой подход избавляет от vendor lock облачного провайдера.
 
 Для работы скрипта необходимо установить утилиту [terraform-inventory](https://github.com/adammck/terraform-inventory)
+
+# Ansible 3
+
+ - Создана файловая структура для Ansible
+ - Добавлены окружения и роли Ansible
+ - Добавлены скрипты динамических инвентори для окружений Ansible
+ - Добавлено правило фаервола для доступа к nginx
+ - Обновлены пути к плейбукам в конфигурациях Packer
+ - Добавлены проверки конфигураций Packer, Terraform, Ansible в TravisCI
